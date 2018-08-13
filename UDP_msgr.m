@@ -42,6 +42,8 @@ classdef UDP_msgr
                     BytePerValue = 4;
                 case 'uint8'
                     BytePerValue = 1;
+                case 'double'
+                    BytePerValue = 8;
             end
             packet_READ = 0;
             data = [];
@@ -50,8 +52,12 @@ classdef UDP_msgr
                 data  = fread(obj.udpOBJ,BytePerValue*dataArraySize);
             end
             received = packet_READ*(length(data)==dataArraySize);
-            if strcmp(format, 'single')
-                data = obj.unpackUDP_Msg_single(uint8(data));
+            if strcmp(format, 'single') || strcmp(format,'double')
+                data = obj.unpackUDP_Msg_single(uint8(data),format);
+            elseif strcmp(format,'uint8')
+                % do nothing                
+            else
+                fprintf('[\b  Format not recognized  ]\b\n');
             end
         end
         function close(obj)
@@ -59,13 +65,23 @@ classdef UDP_msgr
         end
     end
     methods (Static)
-        function data_unpacked = unpackUDP_Msg_single(data)
+        function data_unpacked = unpackUDP_Msg_single(data,format)
+            switch format
+                case 'single'
+                    bytesPerData = 4;
+                case 'double'
+                    bytesPerData = 8;
+                otherwise
+                    fprintf('[\b  Wrong Format input  ]\b\n');
+
+            end
             %   Assuming the data is [4n x 1]
-            dataLen = length(data)/4;
+            dataLen = length(data)/bytesPerData;
             data_unpacked = zeros(dataLen,1);
             for i = 1:dataLen
-                start_i = 1+(i-1)*4;
-                data_unpacked(i) = typecast(data(start_i:start_i+3)','single');
+                start_i = 1+(i-1)*bytesPerData;
+                data_unpacked(i) = typecast(data(start_i:start_i+(bytesPerData-1))',...
+                    format);
             end
         end
     end
