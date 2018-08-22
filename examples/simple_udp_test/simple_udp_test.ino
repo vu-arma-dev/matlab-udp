@@ -54,18 +54,18 @@ void loop()
   int packetSize = Udp.parsePacket();
   Udp.read(recv_data.data_buffer, sizeof(recv_data.data_buffer));
   if(packetSize) {
-  Serial.println("Bytes received:");
-  Serial.println(packetSize);
-  Serial.println("Data recieved:");
-  Serial.print(recv_data.values[0]);
-  Serial.print(" ");
-  Serial.print(recv_data.values[1]);
-  Serial.print(" ");
-  Serial.print(recv_data.values[2]);
-  Serial.print(" ");
-  Serial.println(recv_data.values[3]);
+//  Serial.println("Bytes received:");
+//  Serial.println(packetSize);
+//  Serial.println("Data recieved:");
+  Serial.println(recv_data.values[0]);
+//  Serial.print(" ");
+//  Serial.print(recv_data.values[1]);
+//  Serial.print(" ");
+//  Serial.print(recv_data.values[2]);
+//  Serial.print(" ");
+//  Serial.println(recv_data.values[3]);
   } else {
-    Serial.println("No data received.");
+//    Serial.println("No data received.");
   }
 
   //Send via UDP
@@ -79,6 +79,6 @@ void loop()
   Udp.write(send_data.data_buffer, sizeof(send_data.data_buffer));
   Udp.endPacket();
 
-  //delay(2);
+  delay(10);
 
 }//end loop

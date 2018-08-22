@@ -11,7 +11,9 @@ classdef UDP_msgr
             if nargin<3
                 LocalPort = RemotePort;
             end
-            obj.udpOBJ = udp(RemoteIP,RemotePort,'LocalPort',LocalPort);
+            obj.udpOBJ = ...
+                udp(RemoteIP,RemotePort,'LocalPort',LocalPort,...
+                'InputBufferSize',512);
             try
                 fopen(obj.udpOBJ);
             catch
@@ -24,7 +26,8 @@ classdef UDP_msgr
             if nargin<3
                 format = 'float32';
             end
-            % data = swapbytes(data);
+            data = single(data);
+            data = swapbytes(data);
             fwrite(obj.udpOBJ,(data),format);
         end
         function data = receiveStringMsg(obj,dataArraySize)
