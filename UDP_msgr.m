@@ -47,15 +47,16 @@ classdef UDP_msgr
             end
             packet_READ = 0;
             data = [];
-            while (obj.udpOBJ.BytesAvailable ~= 0)
-                packet_READ = 1;
-                data  = fread(obj.udpOBJ,BytePerValue*dataArraySize);
-            end
+            %while (obj.udpOBJ.BytesAvailable ~= 0)
+            packet_READ = 1;
+            data  = fread(obj.udpOBJ,BytePerValue*dataArraySize);
+            flushinput(obj.udpOBJ);
+            %end
             received = packet_READ*(length(data)==dataArraySize);
             if strcmp(format, 'single') || strcmp(format,'double')
                 data = obj.unpackUDP_Msg_single(uint8(data),format);
             elseif strcmp(format,'uint8')
-                % do nothing                
+                % do nothing
             else
                 fprintf('[\b  Format not recognized  ]\b\n');
             end
@@ -73,7 +74,7 @@ classdef UDP_msgr
                     bytesPerData = 8;
                 otherwise
                     fprintf('[\b  Wrong Format input  ]\b\n');
-
+                    
             end
             %   Assuming the data is [4n x 1]
             dataLen = length(data)/bytesPerData;

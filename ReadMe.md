@@ -1,4 +1,1 @@
-# Matlab UDP messenger [UDP_msgr] #
-Created by Long Wang 2018/1/8
-
-This UDP messenger is created for UDP communication using in Matlab script line environment. The core Matlab default functionality that it relies on is "udp". It was created as a class, which has methods including receiving, sending, and unpacking.
+# Matlab UDP messenger [UDP_msgr] #Created by Long Wang 2018/1/8This UDP messenger is created for UDP communication using in Matlab script line environment. The core Matlab default functionality that it relies on is "udp". It was created as a class, which has methods including receiving, sending, and unpacking.## Test Your Ethernet Shield ##You should test your Ethernet shield first, following the below instructions:* Compile and upload ***simple\_udp\_test.ino*** to your Arduino setup* Ping the Arduino IP address (by default 192.168.1.134) using your host machine* Run the simple test script ***matlab\_Arduino\_test.m**** You should see received data in Matlab command line on your host machine.
