@@ -1,4 +1,5 @@
-%Script to control two hebi actuators via UDP comms to another host
+% Script to control two hebi actuators via UDP comms to another host
+% Deprecated
 
 %% Initialize two Hebi actuators
 

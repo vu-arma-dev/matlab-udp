@@ -1,3 +1,4 @@
+% Deprecated
 u = UDP_msgr('192.168.1.177',10001,10002);
 fprintf('\nReceiving data from Arduino ... \n')
 N=100;

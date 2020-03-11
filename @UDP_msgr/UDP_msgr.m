@@ -4,7 +4,7 @@ classdef UDP_msgr
     % See also UDP_msgr.UDP_msgr, UDP_msgr.receive, UDP_msgr.send
     
     %   Long Wang, 1/8/2018
-    %   Modified by Andrew for Frankbot 7/21/19
+    %   Modified by Andrew 7/21/19
     
     properties (Access = public)
         udpOBJ % udp object by Matlab
@@ -16,6 +16,8 @@ classdef UDP_msgr
         num_bytes_total = 0 %total number of bytes in packet
         byte_per_value = [] %a vector dictating number of bytes per value
         input_buffer_multiplier = 20; %input_buffer_size = multipler * num_bytes_total
+        % input_buffer_multiplier must be a whole number to prevent half a
+        % packet being read in when the buffer is full
         input_buffer_size
     end
     

@@ -1,6 +1,6 @@
 % Test UDP_msgr within a single Matlab script
-% This script will open create two udp objects that will talk to each other
-% on one device.
+% This script will create two udp objects that will talk to each other
+% within one Matlab script.
 
 % Andrew Orekhov 7/21/19
 
@@ -30,7 +30,7 @@ for i = 1:num_loop
 
     %receive data
     [data_rcv,length_correct] = remote_udp.receive();
-
+   
      if ~length_correct || any(abs(data_rcv - data) > 1e-6)
         lost_packets = lost_packets + 1;
     end
