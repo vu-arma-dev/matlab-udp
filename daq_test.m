@@ -3,10 +3,10 @@
 % Local is this PC
 ip_rmt = '192.168.1.46';
 port_rmt = 28000;
-port_lcl_enc = 28006;
-port_lcl_pot = 28007;
-port_lcl_tof = 28002;
-port_lcl_he = 28005;
+port_lcl_enc = 28002;
+port_lcl_pot = 28004;
+port_lcl_tof = 28006;
+port_lcl_he = 28008;
 
 %%% CONSTANTS
 num_string = 4;
